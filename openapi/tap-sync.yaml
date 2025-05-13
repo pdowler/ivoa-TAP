@@ -7,10 +7,10 @@ get:
     parameters:
       - $ref: ./tap-lang.yaml
       - $ref: ./tap-query.yaml
-      - $ref: ./tap-upload.yaml
       - $ref: ./tap-format.yaml
       - $ref: ../dali/dali-maxrec.yaml
       - $ref: ../dali/dali-responseformat.yaml
+      - $ref: ../dali/dali-upload.yaml
     responses:
         200:
             description: successful response
@@ -31,10 +31,10 @@ post:
     parameters:
       - $ref: ./tap-lang.yaml
       - $ref: ./tap-query.yaml
-      - $ref: ./tap-upload.yaml
       - $ref: ./tap-format.yaml
       - $ref: ../dali/dali-maxrec.yaml
       - $ref: ../dali/dali-responseformat.yaml
+      - $ref: ../dali/dali-upload.yaml
     responses:
         200:
             description: successful response
