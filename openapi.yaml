@@ -1,0 +1,31 @@
+openapi: 3.1.0
+info:
+  title: prototype TAP-1.2 with user managed tables
+  #version: "1.2"
+  description: |
+    This is the WD-TAP-1.2 API specification with components imported from
+    VOSI, UWS, and DALI.
+servers:
+- url: /tapBase
+
+## any of the $ref values below can be URLs to external (standard) OpenAPI components
+
+paths:
+    /capabilities:
+        $ref: ./openapi/vosi/vosi-capabilities.yaml
+
+    /sync:
+        $ref: ./openapi/tap/tap-sync.yaml
+    /async:
+        $ref: ./openapi/tap/tap-async.yaml
+    /async/{jobID}:
+        $ref: ./openapi/uws/uws-job.yaml
+    /async/{jobID}/phase:
+        $ref: ./openapi/uws/uws-job-phase.yaml
+
+    /tables:
+        $ref: ./openapi/vosi/vosi-tableset.yaml
+    /tables/{name}:
+        $ref: ./openapi/vosi/vosi-table.yaml
+
+
