@@ -8,6 +8,7 @@
 \lstset{flexiblecolumns=true,basicstyle=\small,tagstyle=\ttfamily,
   showstringspaces=False}
 \usepackage[utf8]{inputenc}
+\usepackage{todonotes}
 
 \hyphenation{asyn-chro-n-ous-ly}
 
@@ -151,8 +152,8 @@ service must support queries written in the Astronomical Data Query
 Language.
 
 \item[VOSI \citep{2017ivoa.spec.0524G}] The VO Support Interfaces standard
-defines endpoints for metadata discovery; for TAP, this is the tables,
-capabilities, and availability endpoints. Note that while TAP 1.1 does not
+defines endpoints for metadata discovery; for TAP, this is the tables and
+capabilities endpoints. Note that while TAP 1.1 does not
 require the use of any particular minor version of the VOSI standard, 
 the VOSI-tables resource in VOSI 1.1 provides important usability features, and
 implementors of TAP 1.1 are encouraged to support VOSI 1.1 or later.
@@ -278,7 +279,15 @@ and consume modest internal resources.
 \label{sec:resources}
 
 An implementation of a TAP service provides the following RESTful resources 
-under the base URL.
+under the base URL. As of TAP-1.2, these endpoints are defined using OpenAPI
+(in yaml syntax) and depend on OpenAPI components imported from other standards:
+VOSI, UWS, and DALI. The OpenAPI specification is considered the definitive
+specification of the TAP API; the text below is intended to clarify and provide
+examples, but it may provide details that go beyond the OpenAPI description when
+describing behaviour or content.
+\todo{decide if the aggregate OpenAPI specification of TAP is static or dynamic aka
+do we refer to a specific version of a component? or can services implement the latest
+in some range?}
 
 \medskip
 \begin{inlinetable}
@@ -288,7 +297,6 @@ under the base URL.
 \sptablerule
 TAP-sync & /sync & must \\
 TAP-async & /async & must \\
-VOSI-availability & service specific & must (must be anonymous) \\
 VOSI-capabilities & /capabilities & must (must be anonymous) \\
 VOSI-tables & /tables & should \\
 DALI-examples & /examples & should \\
@@ -299,11 +307,11 @@ DALI-examples & /examples & should \\
 
 A TAP service provides a single base URL with child resources for the various features in the table above. 
 As required by DALI \citep{2017ivoa.spec.0517D}, all resources (including the optional VOSI-tables 
-resource) except the VOSI-availability must be siblings of the VOSI-capabilities resource.
+resource) must be siblings of the VOSI-capabilities resource.
 
-The fixed name resources above (async, sync, tables, and examples) are used for both anonymous and 
+The fixed name resources above (async, sync, capabilities, tables, and examples) are used for both anonymous and 
 authenticated access to the service; the consequences of having a single base URL are detailed below in 
-section~\ref{sec:vosi-capabilities}. The VOSI-availability and VOSI-capabilities resources must allow anonymous access as they can be used by clients to determine if the service is available and which resources to use with
+section~\ref{sec:vosi-capabilities}. The VOSI-capabilities resources must allow anonymous access as they can be used by clients to determine if the service is available and which resources to use with
 available security (authentication) methods.
 
 The web resource at the root of the tree represents the service as a whole. 
@@ -403,11 +411,6 @@ If the query returned no rows, the result resource must exist and contain no
 data rows. Details on interacting with these resources are specified in the UWS 
 standard; for examples specific to TAP see section~\ref{sec:examples} below.
 
-\subsection{VOSI-availability}
-\label{sec:vosi-availability}
-
-The use of the VOSI-availability resource is described in DALI.
-
 \subsection{VOSI-capabilities}
 \label{sec:vosi-capabilities}
 
@@ -460,7 +463,7 @@ The same URL (e.g. \verb|https://example.net/tap/sync| for a synchronous query) 
 As a consequence of using a single base URL with fixed name child resources, all supported authentication 
 methods must be able to co-exist on the same URL.  
 
-In the example above, the VOSI-availability and VOSI-capabilities interfaces are anonymous (no securityMethod). 
+In the example above, the VOSI-capabilities interface is anonymous (no securityMethod). 
 The VOSI-tables interface is typically also anonymous-only, but in the example we show that it may also support
 anonymous and/or authenticated access. In general, clients that support authentication should be prepared to discover and use anonymous-only endpoints for some requests. 
 
@@ -1359,6 +1362,15 @@ descriptions without breaking RDFa semantics.
 \lstinputlisting[language=HTML,basicstyle=\footnotesize]{examples-sample.html}
 
 \appendix
+
+\section{Changes from TAP-1.1 to TAP-1.2}
+\begin{itemize}
+
+\item Core API specification is provided as using OpenAPI (yaml syntax).
+
+\item VOSI-availability removed.
+
+\end{itemize}
 
 \section{Changes from TAP-1.0 to TAP-1.1}
 
