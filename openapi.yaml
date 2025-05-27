@@ -11,9 +11,6 @@ servers:
 ## any of the $ref values below can be URLs to external (standard) OpenAPI components
 
 paths:
-    /capabilities:
-        $ref: ./openapi/vosi/vosi-capabilities.yaml
-
     /sync:
         $ref: ./openapi/tap/tap-sync.yaml
     /async:
@@ -22,6 +19,9 @@ paths:
         $ref: ./openapi/uws/uws-job.yaml
     /async/{jobID}/phase:
         $ref: ./openapi/uws/uws-job-phase.yaml
+    
+    /capabilities:
+        $ref: ./openapi/vosi/vosi-capabilities.yaml
 
     /tables:
         $ref: ./openapi/vosi/vosi-tableset.yaml
