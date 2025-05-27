@@ -10,11 +10,7 @@ servers:
 
 ## any of the $ref values below can be URLs to external (standard) OpenAPI components
 
-paths:
-    /capabilities:
-        $ref: ./openapi/vosi/vosi-capabilities.yaml
-
-    /sync:
+paths:/sync:
         $ref: ./openapi/tap/tap-sync.yaml
     /async:
         $ref: ./openapi/tap/tap-async.yaml
@@ -27,6 +23,9 @@ paths:
         $ref: ./openapi/vosi/vosi-tableset.yaml
     /tables/{name}:
         $ref: ./openapi/vosi/vosi-table.yaml
+
+    /capabilities:
+        $ref: ./openapi/vosi/vosi-capabilities.yaml
 
 # optional endpoint: allowed to return 404 or 405
     /table-ops:
