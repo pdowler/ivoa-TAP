@@ -19,7 +19,8 @@ paths:
         $ref: ./openapi/uws/uws-job.yaml
     /async/{jobID}/phase:
         $ref: ./openapi/uws/uws-job-phase.yaml
-    
+## all additional UWS subpaths need to be listed here
+
     /capabilities:
         $ref: ./openapi/vosi/vosi-capabilities.yaml
 
