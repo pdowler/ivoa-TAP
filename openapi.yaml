@@ -19,11 +19,7 @@ tags:
 ## openapi/uws is currently here in ivoa-std/TAP -- TBD
 ## openapi/tap is here in ivoa-std/TAP
 
-paths:
-    /capabilities:
-        $ref: ./openapi/vosi/vosi-capabilities.yaml
-
-    /sync:
+paths:/sync:
         $ref: ./openapi/tap/tap-sync.yaml
     /async:
         $ref: ./openapi/tap/tap-async.yaml
@@ -38,6 +34,9 @@ paths:
         $ref: ./openapi/vosi/vosi-tableset.yaml
     /tables/{name}:
         $ref: ./openapi/vosi/vosi-table.yaml
+
+    /capabilities:
+        $ref: ./openapi/vosi/vosi-capabilities.yaml
 
 # optional endpoint: allowed to return 404 or 405
     #/table-ops:
