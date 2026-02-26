@@ -1,14 +1,23 @@
 openapi: 3.1.0
 info:
   title: prototype TAP-1.2 with user managed tables
-  #version: "1.2"
+  version: "1.2"
   description: |
     This is the WD-TAP-1.2 API specification with components imported from
-    VOSI, UWS, and DALI.
+    DALI and VOSI.
+
 servers:
 - url: /tapBase
 
+tags:
+    - name: VOSI Capabilities
+    - name: VOSI Table Metadata
+    - name: TAP Query
+
 ## any of the $ref values below can be URLs to external (standard) OpenAPI components
+## openapi/dali and openapi/vosi need to be copied from ivoa-std/DALI and ivoa-std/VOSI
+## openapi/uws is currently here in ivoa-std/TAP -- TBD
+## openapi/tap is here in ivoa-std/TAP
 
 paths:
     /capabilities:
@@ -22,6 +31,8 @@ paths:
         $ref: ./openapi/uws/uws-job.yaml
     /async/{jobID}/phase:
         $ref: ./openapi/uws/uws-job-phase.yaml
+    /async/{jobID}/results/result:
+        $ref: ./openapi/tap/tap-result.yaml
 
     /tables:
         $ref: ./openapi/vosi/vosi-tableset.yaml
@@ -29,10 +40,10 @@ paths:
         $ref: ./openapi/vosi/vosi-table.yaml
 
 # optional endpoint: allowed to return 404 or 405
-    /table-ops:
-        $ref: ./openapi/vosi/vosi-table-ops.yaml
-    /table-ops/{jobID}:
-        $ref: ./openapi/uws/uws-job.yaml
-    /table-ops/{jobID}/phase:
-        $ref: ./openapi/uws/uws-job-phase.yaml
+    #/table-ops:
+    #    $ref: ./openapi/vosi/vosi-table-ops.yaml
+    #/table-ops/{jobID}:
+    #    $ref: ./openapi/uws/uws-job.yaml
+    #/table-ops/{jobID}/phase:
+    #    $ref: ./openapi/uws/uws-job-phase.yaml
 
