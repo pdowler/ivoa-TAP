@@ -1,11 +1,16 @@
 #!/bin/bash
 
 # source locations for external components
-VOSI=$HOME/work/dev/ivoa-std/VOSI.git
-DALI=$HOME/work/dev/ivoa-std/DALI.git
+VOSI=../VOSI
+DALI=../DALI
+test -d $VOSI || VOSI=../VOSI.git
+test -d $DALI || DALI=../DALI.git
 
 ARGS="$1 -avc --delete"
 
+echo "found VOSI: $VOSI"
 rsync $ARGS $VOSI/openapi/vosi openapi/
+
+echo "found DALI: $DALI"
 rsync $ARGS $DALI/openapi/dali openapi/
 
