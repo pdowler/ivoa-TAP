@@ -1,5 +1,5 @@
 get:
-    operationId: job-get
+    operationId: tap-job-get
     tags:
         - TAP Query
     summary: get a UWS job description
