@@ -19,7 +19,7 @@ get:
           example: WAIT=60
     responses:
         '200':
-            $ref: ./uws-responses.yaml#/job
+            $ref: ../uws/uws-responses.yaml#/job
         '401':
             $ref: ../vosi/vosi-std-responses.yaml#/not-authenticated
         '403':

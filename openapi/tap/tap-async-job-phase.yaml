@@ -45,7 +45,7 @@ post:
         '200':
             description: phase change successful
         '400':
-            $ref: ./uws-responses.yaml#/invalid-phase-change
+            $ref: ../uws/uws-responses.yaml#/invalid-phase-change
         '401':
             $ref: ../vosi/vosi-std-responses.yaml#/not-authenticated
         '403':
