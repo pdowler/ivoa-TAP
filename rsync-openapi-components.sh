@@ -11,6 +11,9 @@ ARGS="$1 -avc --delete"
 echo "found VOSI: $VOSI"
 rsync $ARGS $VOSI/openapi/vosi openapi/
 
+echo "get UWS from $VOSI"
+rsync $ARGS $VOSI/openapi/uws openapi/
+
 echo "found DALI: $DALI"
 rsync $ARGS $DALI/openapi/dali openapi/
 
